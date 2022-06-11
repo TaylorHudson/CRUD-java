@@ -1,0 +1,29 @@
+package sistemaCadastro.simulacaoview;
+
+import java.util.Date;
+import sistemaCadastro.dao.UsuarioDAO;
+import sistemaCadastro.model.Usuario;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		
+		/* Usuario usuario = new Usuario();
+		usuario.setNomeUsuario("mariadolores@gmail.com");
+		usuario.setSenha("&1*+-.,mnrhsndgdejk");
+		usuario.setData_cadastro(new Date()); */
+		
+		UsuarioDAO usuariodao = new UsuarioDAO();
+		//usuariodao.cadastrar(usuario);
+		
+		/* System.out.println("Usuários:");
+		for(Usuario user: usuariodao.listar()) {
+			System.out.println(user.getNomeUsuario());
+			System.out.println(user.getSenha());
+			System.out.println(); */
+		usuariodao.deletar(6);	
+		
+		
+		}
+	}
+}

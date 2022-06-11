@@ -1,0 +1,69 @@
+package sistemaCadastro.simulacaoview;
+
+import java.util.Date;
+import java.util.Scanner;
+
+import sistemaCadastro.dao.UsuarioDAO;
+import sistemaCadastro.model.Usuario;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		UsuarioDAO usuariodao = new UsuarioDAO();
+		
+		int escolha;
+		do {
+		System.out.println("O que deseja?\n1 - cadastrar | 2 - deletar | 3 - listar | 4 - atualizar");
+		escolha = in.nextInt();
+		} while(escolha < 0 || escolha > 4);
+		
+		try {
+			
+			if (escolha == 1) {	
+				String email, senha;
+			
+				System.out.println("E-mail: ");
+				System.out.println("Senha: ");
+				email = in.nextLine();
+				senha = in.nextLine();
+						
+				Usuario usuario = new Usuario();
+				usuario.setEmail(email);
+				usuario.setSenha(senha);
+				usuario.setData_cadastro(new Date());
+				
+				usuariodao.cadastrar(usuario);
+				
+				System.out.println("fim");
+				
+			} else if (escolha == 2) {
+				String email;
+				
+				System.out.println("Endereço de e-mail do usuário que deseja apagar: ");
+				email = in.nextLine();
+				usuariodao.deletar(email);
+				
+			} else if (escolha == 3) {
+				System.out.println("Lista de usuários: ");
+				
+				for (Usuario user : usuariodao.listar()) {
+					
+					System.out.println("\nNome de usuario: "+user.getEmail());
+					System.out.println("Senha: "+user.getSenha());
+					System.out.println("Data de cadastro: "+user.getData_cadastro());	
+				}
+				
+			} else if (escolha == 4) {}
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			in.close();
+		}
+	}
+}
+

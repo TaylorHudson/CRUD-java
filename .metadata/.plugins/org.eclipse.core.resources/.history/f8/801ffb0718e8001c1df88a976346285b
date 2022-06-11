@@ -1,0 +1,5 @@
+package sistemaCadastro.factory;
+
+public class Conexao {
+
+}

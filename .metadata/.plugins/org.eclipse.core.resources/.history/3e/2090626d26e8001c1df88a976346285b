@@ -1,0 +1,20 @@
+package sistemaCadastro.simulacaoview;
+
+import java.util.Date;
+
+import sistemaCadastro.dao.UsuarioDAO;
+import sistemaCadastro.model.Usuario;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		
+		Usuario usuario = new Usuario();
+		usuario.setUsuario("brunosilveira@gmail.com");
+		usuario.setSenha("&14700mn43&*ndgdejk");
+		usuario.setData_cadastro(new Date());
+		
+		UsuarioDAO usuariodao = new UsuarioDAO();
+		usuariodao.cadastrar(usuario);
+	}
+}

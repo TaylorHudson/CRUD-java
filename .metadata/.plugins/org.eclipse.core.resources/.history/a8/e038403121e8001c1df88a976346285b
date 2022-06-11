@@ -1,0 +1,5 @@
+package sistemaCadastro.model;
+
+public class Usuario {
+
+}

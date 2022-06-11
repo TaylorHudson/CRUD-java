@@ -1,0 +1,27 @@
+package sistemaCadastro.simulacaoview;
+
+import java.util.Date;
+import java.util.Scanner;
+
+import sistemaCadastro.dao.UsuarioDAO;
+import sistemaCadastro.model.Usuario;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		
+		try {
+			
+			System.out.println("O que deseja?\n1 - cadastrar | 2 - deletar | 3 - listar | 4 - atualizar");
+			int escolha = in.nextInt();
+			
+		} catch (Exception e) {
+			
+			System.out.println("O que deseja?\n1 - cadastrar | 2 - deletar | 3 - listar | 4 - atualizar");
+			int escolha = in.nextInt();
+			
+		}
+	}
+}
+

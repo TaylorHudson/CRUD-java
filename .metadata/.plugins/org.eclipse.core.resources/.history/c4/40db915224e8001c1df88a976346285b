@@ -1,0 +1,54 @@
+package sistemaCadastro.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.Date;
+
+import sistemaCadastro.factory.ConexaoFactory;
+import sistemaCadastro.model.Usuario;
+
+public class UsuarioDAO {
+	
+	public void cadastrar(Usuario usuario) {
+		
+		String sql = "INSERT INTO usuarios(nome, senha, data_cadastro) VALUES (?, ?, ?)";
+		
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		
+		try {
+			
+			conn = ConexaoFactory.conectarComMySQL();
+			pstm = conn.prepareStatement(sql);
+			
+			pstm.setString(1, usuario.getUsuario());
+			pstm.setString(2, usuario.getSenha());
+			pstm.setDate(3, (java.sql.Date) new java.sql.Date(usuario.getData_cadastro().getTime()));
+			
+			pstm.execute();
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			try {
+				
+				if (conn != null) {
+					conn.close();
+				}
+				if (pstm != null) {
+					pstm.close();
+				}
+				
+			} catch (Exception e2) {
+				
+				e2.printStackTrace();
+			}
+		}
+		
+	}
+
+	
+}

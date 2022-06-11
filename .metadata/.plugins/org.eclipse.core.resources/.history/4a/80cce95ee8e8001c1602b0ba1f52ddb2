@@ -1,0 +1,32 @@
+package sistemaCadastro.simulacaoview;
+
+import java.util.Date;
+import java.util.Scanner;
+
+import sistemaCadastro.dao.UsuarioDAO;
+import sistemaCadastro.model.Usuario;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		
+		UsuarioDAO usuariodao = new UsuarioDAO();
+						
+			/*Usuario usuario = new Usuario();
+			usuario.setEmail("");
+			usuario.setSenha("");
+			usuario.setData_cadastro(new Date());
+			
+			usuariodao.cadastrar(usuario);*/
+			
+			usuariodao.deletar("t");
+		
+			for (Usuario user : usuariodao.listar()) {
+				
+				System.out.println("\nNome de usuario: "+user.getEmail());
+				System.out.println("Senha: "+user.getSenha());
+				System.out.println("Data de cadastro: "+user.getData_cadastro());	
+		}			
+	}
+}
+

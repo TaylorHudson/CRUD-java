@@ -1,0 +1,22 @@
+package sistemaCadastro.simulacaoview;
+
+import sistemaCadastro.dao.UsuarioDAO;
+import sistemaCadastro.model.Usuario;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		
+		UsuarioDAO usuariodao = new UsuarioDAO();
+						
+			//usuariodao.deletar("t");
+		
+			for (Usuario user : usuariodao.listar()) {
+				
+				System.out.println("\nNome de usuario: "+user.getEmail());
+				System.out.println("Senha: "+user.getSenha());
+				System.out.println("Data de cadastro: "+user.getData_cadastro());	
+		}			
+	}
+}
+

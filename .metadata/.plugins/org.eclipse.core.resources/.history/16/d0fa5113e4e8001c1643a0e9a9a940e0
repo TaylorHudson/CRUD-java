@@ -1,0 +1,29 @@
+package sistemaCadastro.model;
+
+import java.util.Date;
+
+public class Usuario {
+
+	private String nome_usuario;
+	private String senha;
+	private Date data_cadastro;
+	
+	public String getNomeUsuario() {
+		return nome_usuario;
+	}
+	public void setNomeUsuario(String nome_usuario) {
+		this.nome_usuario = nome_usuario;
+	}
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	public Date getData_cadastro() {
+		return data_cadastro;
+	}
+	public void setData_cadastro(Date data) {
+		this.data_cadastro = data;
+	}
+}

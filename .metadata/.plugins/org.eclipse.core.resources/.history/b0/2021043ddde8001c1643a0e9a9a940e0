@@ -1,0 +1,18 @@
+package sistemaCadastro.simulacaoview;
+
+import java.util.Date;
+import sistemaCadastro.dao.UsuarioDAO;
+import sistemaCadastro.model.Usuario;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		
+		UsuarioDAO usuariodao = new UsuarioDAO();
+		
+		usuariodao.deletar(6);	
+		
+		
+		}
+	}
+}
