@@ -13,8 +13,8 @@ public class Main {
 		
 		// CREATE
 		Usuario usuario = new Usuario();
-		usuario.setEmail("adminteste@gmail.com");
-		usuario.setSenha("12383545&*%");
+		usuario.setEmail("admin@gmail.com");
+		usuario.setSenha("123&*%");
 		usuario.setData_cadastro(new Date());
 		
 		usuariodao.cadastrar(usuario);
@@ -36,7 +36,7 @@ public class Main {
 		usuariodao.alterar(usuario2);
 		
 		// DELETE
-		usuariodao.deletar("admin@gmail.com");  
+		usuariodao.deletar("admin@gmail.com"); 
 	}
 }
 

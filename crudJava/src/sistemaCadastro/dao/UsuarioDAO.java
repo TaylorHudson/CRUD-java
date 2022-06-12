@@ -2,57 +2,95 @@ package sistemaCadastro.dao;
 
 import java.util.ArrayList;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 import javax.swing.JOptionPane;
-
 import sistemaCadastro.fabrica.FabricaConexao;
 import sistemaCadastro.model.Usuario;
 
 public class UsuarioDAO {
 	
 	public void cadastrar(Usuario usuario) {
-		
-		String sql = "INSERT INTO usuarios(email, senha, data_cadastro) VALUES (?, ?, ?)";
-		
+
+		String sql = "SELECT email,senha FROM usuarios WHERE email = ?";
 		Connection conn = null;
 		PreparedStatement pstm = null;
+		ResultSet rs = null;
 		
 		try {
 			
 			conn = FabricaConexao.conectarComMySQL();
 			pstm = conn.prepareStatement(sql);
-			
+
 			pstm.setString(1, usuario.getEmail());
-			pstm.setString(2, usuario.getSenha());
-			pstm.setDate(3, (java.sql.Date) new java.sql.Date(usuario.getData_cadastro().getTime()));
+
+			rs = pstm.executeQuery();
 			
-			pstm.execute();
-			JOptionPane.showMessageDialog(null, "Usuário cadastrado");
-			
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-			
-		} finally {
-			
-			try {
+			if (rs.next()) {
+				JOptionPane.showMessageDialog(null, "Esse email já está em uso.");
+
+			} else {
+
+				String sql2 = "INSERT INTO usuarios(email, senha, data_cadastro) VALUES (?, ?, ?)";
+				Connection conn2 = null;
+				PreparedStatement pstm2 = null;
 				
+				try {
+					
+					conn2 = FabricaConexao.conectarComMySQL();
+					pstm2 = conn2.prepareStatement(sql2);
+
+					pstm2.setString(1, usuario.getEmail());
+					pstm2.setString(2, usuario.getSenha());
+					pstm2.setDate(3, new java.sql.Date(usuario.getData_cadastro().getTime()));
+
+					pstm2.execute();
+
+					JOptionPane.showMessageDialog(null, "Usuário cadastrado.");
+
+				} catch (Exception e) {
+
+					e.printStackTrace();
+
+				} finally {
+
+					try {
+						
+						if (conn2 != null) {
+							conn2.close();
+						}
+						if (pstm2 != null) {
+							pstm2.close();
+						}
+
+					} catch (Exception e) {
+
+						e.printStackTrace();
+					}
+				}
+		    }
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+
+			try {
+
 				if (conn != null) {
 					conn.close();
 				}
 				if (pstm != null) {
 					pstm.close();
 				}
+				if (rs != null) {
+					rs.close();
+				}
 				
-			} catch (Exception e2) {
-				
-				e2.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
-		
 	}
 
 	public void deletar(String email) {
@@ -184,7 +222,5 @@ public class UsuarioDAO {
 				e2.printStackTrace();
 			}
 		}		
-	}
-
-	
+	}	
 }
